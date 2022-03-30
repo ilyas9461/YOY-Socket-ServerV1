@@ -34,8 +34,8 @@ namespace socketio_client
         LocalToWebTables localToWebTables = new LocalToWebTables();
 
         SocketIO socketIOLocal = new SocketIO("http://localhost:9460/");
-        //SocketIO socketIOWeb= new SocketIO("http://165.227.142.37:9461/");
-        SocketIO socketIOWeb = null;    // new SocketIO("http://192.168.1.194:9461/");
+       
+        SocketIO socketIOWeb = null;    // new SocketIO("...");
 
         SocketClientLys webSocketIOClient = new SocketClientLys();
         SocketClientLys localSocketIOClient = new SocketClientLys();
