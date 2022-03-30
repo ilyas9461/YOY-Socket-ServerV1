@@ -18,5 +18,5 @@ This informations could be:
 
  ## Tech Stack
 
-**Server:** C#   
+**Server:** C#, SocketIOClient 
 
