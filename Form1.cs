@@ -127,7 +127,7 @@ namespace socketio_client
                         string dataDgv = $"{toyUnitName}, msg_id:{obj["msg_id"]} ";
 
                         dataGridView1.Rows.Add(DateTime.Now.ToString("HH:mm:ss"), obj["operation"].ToString(),"", dataDgv);  //"yyyy-MM-dd HH:mm:ss"
-
+                        
                     } 
                     else
                     {
@@ -213,6 +213,8 @@ namespace socketio_client
             RemoveDuplicatesDGVRows(dgv_oyuncaklar, "Oyuncak Adı");
         }//
 
+        string staLocal = "";
+        string staWeb = "";
         private delegate void updateSocketStatusDelegate(String text); //define delegate
         public static void updateToolStripSocketStatus(String text)    // call update method
         {
@@ -226,7 +228,11 @@ namespace socketio_client
                 return;
             }
 
-            toolStripStatusLabel_socket.Text = text;
+            if (text.Contains("LOCAL")) staLocal = text;
+            if (text.Contains("WEB")) staWeb = text;
+
+            if (text.Contains("Reconnecting")) toolStripStatusLabel_socket.Text = text;
+            else toolStripStatusLabel_socket.Text =staLocal+ " " +staWeb;
 
         }
 
@@ -278,6 +284,10 @@ namespace socketio_client
 
             localSocketIOClient.initSocket(socketIOLocal);
             webSocketIOClient.initSocket(socketIOWeb);
+
+            this.Hide();
+
+
         }//load
 
         private void RemoveDuplicatesDGVRows(DataGridView dt, string dgvColName)
@@ -343,22 +353,63 @@ namespace socketio_client
         {
             await socketIOLocal.EmitAsync("led1-on");
         }
-        bool led = false;
-        private async void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
-        {
-            if (led)
-            {
-                await socketIOLocal.EmitAsync("led1-off");
-                led = false;
-                toolStripStatusLabel1.Text = "LED Sönük...";
-            }
-            else
-            {
-                await socketIOLocal.EmitAsync("led1-on");
-                led = true;
-                toolStripStatusLabel1.Text = "LED Yanık...";
-            }
 
+        //bool led = false;
+        //private async void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        //{
+        //    if (led)
+        //    {
+        //        await socketIOLocal.EmitAsync("led1-off");
+        //        led = false;
+        //        toolStripStatusLabel1.Text = "LED Sönük...";
+        //    }
+        //    else
+        //    {
+        //        await socketIOLocal.EmitAsync("led1-on");
+        //        led = true;
+        //        toolStripStatusLabel1.Text = "LED Yanık...";
+        //    }
+
+        //}
+        private void toolStripButtonHide_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            hoverNotify = false;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = mBox.Show("Programı kapatırsanız yerel ağdaki diğer PC'ler etkilenir !!!\nProgramı kapatmak istiyor musunuz ?", mbox.MSJ_TIP_SORU);
+            if (result == DialogResult.Yes)
+            {
+                notifyIconTray.Visible = false;
+                Application.Exit();
+            }
+           
+        }
+
+        private void showMainFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+        bool hoverNotify = false;
+
+        private void notifyIconTray_Click(object sender, EventArgs e)
+        {
+            if (!hoverNotify)
+            {
+                notifyIconTray.BalloonTipIcon = ToolTipIcon.None;
+                notifyIconTray.BalloonTipText = "YOY SERVER RUNNING !!";
+                notifyIconTray.BalloonTipTitle = "YOY-SERVER";
+                notifyIconTray.ShowBalloonTip(2000);
+                hoverNotify = true;
+            }
+            
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            hoverNotify = true;
         }
     }
 }

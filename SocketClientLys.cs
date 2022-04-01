@@ -425,8 +425,17 @@ namespace socketio_client
         }
         private void Socket_OnReconnecting(object sender, int e)
         {
-            Form1.updateToolStripSocketStatus($"{DateTime.Now} Reconnecting: attempt = {e}");
+            var socket = sender as SocketIO;
 
+            if (socket.ServerUri.Port == 9460)
+            {
+                Form1.updateToolStripSocketStatus($"{DateTime.Now} LOCAL Reconnecting: attempt = {e}");
+            }
+            if (socket.ServerUri.Port == 9461)
+            {
+                Form1.updateToolStripSocketStatus($"{DateTime.Now} WEB Reconnecting: attempt = {e}");
+            }
+        
         }
 
         private void Socket_OnDisconnected(object sender, string e)
@@ -434,10 +443,10 @@ namespace socketio_client
             Form1.updateToolStripSocketStatus("Disconnect: " + e);
 
         }
-        private async void Socket_OnConnected(object sender, EventArgs e)
+         private async void Socket_OnConnected(object sender, EventArgs e)
         {
             var socket = sender as SocketIO;
-            Form1.updateToolStripSocketStatus("Socket On Connected : " + socket.Id);
+            
             // await socket.EmitAsync("hi", DateTime.Now.ToString());
             string remoteRoom = MySqlOperations.getSocketConfig("REMOTE_ROOM_ID");
             string serverCompanyId = remoteRoom.Split('-')[0];
@@ -448,6 +457,12 @@ namespace socketio_client
             if (socket.ServerUri.Port == 9460)
             {
                 remoteRoom = "UNITS";
+                Form1.updateToolStripSocketStatus("LOCAL:" + socket.Id);
+            }
+
+            if (socket.ServerUri.Port == 9461)
+            {
+                Form1.updateToolStripSocketStatus("WEB:" + socket.Id);
             }
 
             var myUserData = new
@@ -467,11 +482,22 @@ namespace socketio_client
         private void Socket_OnPing(object sender, EventArgs e)
         {
             Form1.updateToolStripSocketStatus("Ping ...");
+               
         }
 
         private void Socket_OnPong(object sender, TimeSpan e)
         {
-            Form1.updateToolStripSocketStatus("Pong: " + e.TotalMilliseconds);
+            var socket = sender as SocketIO;
+            if (socket.ServerUri.Port == 9460)
+            {
+                Form1.updateToolStripSocketStatus("LOCAL:" + e.TotalMilliseconds.ToString());
+            }
+            if (socket.ServerUri.Port == 9461)
+            {
+                Form1.updateToolStripSocketStatus("WEB:" + e.TotalMilliseconds.ToString());
+            }
+
+           
         }
     }//class
 }

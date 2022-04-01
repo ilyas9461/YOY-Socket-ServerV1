@@ -161,6 +161,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Martin-Berube-People-Child.ico" />
+    <None Include="Resources\Arrows-icon.png" />
+    <None Include="Resources\Folders-OS-Exit-Full-Screen-Metro-icon.png" />
+    <None Include="Resources\red-cross-icon.png" />
+    <None Include="Resources\exit.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />

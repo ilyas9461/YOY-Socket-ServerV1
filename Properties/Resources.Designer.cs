@@ -59,5 +59,35 @@ namespace socketio_client.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Arrows_icon {
+            get {
+                object obj = ResourceManager.GetObject("Arrows-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Folders_OS_Exit_Full_Screen_Metro_icon {
+            get {
+                object obj = ResourceManager.GetObject("Folders-OS-Exit-Full-Screen-Metro-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap red_cross_icon {
+            get {
+                object obj = ResourceManager.GetObject("red-cross-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

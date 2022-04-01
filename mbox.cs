@@ -24,12 +24,12 @@ namespace socketio_client
             if (tip.Equals(MSJ_TIP_BILGI))
             {
                 
-                MessageBox.Show(mesaj, "Oyun Havuzu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(mesaj, "YOY SERVER", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            if (tip.Equals(MSJ_TIP_HATA)) MessageBox.Show(mesaj, "Oyun Havuzu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (tip.Equals(MSJ_TIP_HATA)) MessageBox.Show(mesaj, "YOY SERVER", MessageBoxButtons.OK, MessageBoxIcon.Error);
             if (tip.Equals(MSJ_TIP_SORU))
             {
-                secim=MessageBox.Show(mesaj, "Oyun Havuzu", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                secim=MessageBox.Show(mesaj, "YOY SERVER", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (secim == DialogResult.Yes) return DialogResult.Yes;
                 if (secim == DialogResult.No) return DialogResult.No;
             }
@@ -42,17 +42,17 @@ namespace socketio_client
             if (tip.Equals(MSJ_TIP_BILGI))
             {
                 (new System.Threading.Thread(CloseIt)).Start();
-                MessageBox.Show(mesaj, "Oyun Havuzu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(mesaj, "YOY SERVER", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             if (tip.Equals(MSJ_TIP_HATA))
             {
                 (new System.Threading.Thread(CloseIt)).Start();
-                MessageBox.Show(mesaj, "Oyun Havuzu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(mesaj, "YOY SERVER", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (tip.Equals(MSJ_TIP_SORU))
             {
                 (new System.Threading.Thread(CloseIt)).Start();
-                secim = MessageBox.Show(mesaj, "Oyun Havuzu", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                secim = MessageBox.Show(mesaj, "YOY SERVER", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (secim == DialogResult.Yes) return DialogResult.Yes;
                 if (secim == DialogResult.No) return DialogResult.No;
             }

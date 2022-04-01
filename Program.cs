@@ -17,19 +17,25 @@ namespace socketio_client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            //Form1 mainForm = new Form1();
+
             //using (NotifyIcon icon = new NotifyIcon())
             //{
             //    icon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
             //    icon.ContextMenu = new ContextMenu(new MenuItem[] {
 
-            //        new MenuItem("Show form", (s, e) => {new Form1().Show();}),
+            //        new MenuItem("Show Main Form", (s, e) => {
+            //            mainForm.Show();
+                       
+            //        }),
             //        new MenuItem("Exit", (s, e) => { Application.Exit(); }),
             //    });
 
             //    icon.Visible = true;
 
-            //    Application.Run();
+            //    Application.Run(mainForm);
+            //    //Application.Run(new Form1());
             //    icon.Visible = false;
             //}
 
